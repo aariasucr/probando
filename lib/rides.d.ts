@@ -6,7 +6,8 @@ export declare enum RideStatus {
     IN_PROGRESS = "In progress",
     CANCELLED_BY_CLIENT = "Cancelled by client",
     CANCELLED_BY_DRIVER = "Cancelled by driver",
-    COMPLETED = "Completed"
+    COMPLETED = "Completed",
+    TIMEOUT = "Timeout"
 }
 /**
  *  * Enum con los tipos de metodos de pago
