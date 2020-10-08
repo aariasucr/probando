@@ -1,4 +1,4 @@
-name: Construir
+name: Construir Interfaces Base de Datos
 on:
   push:
     branches:
@@ -13,6 +13,36 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v1
+
+      - name: Configurar Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+
+      - name: Cache de NPM
+        uses: actions/cache@v2
+        with:
+          path: "**/node_modules"
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Instalar Dependencias
+        run: npm install
+
+      - name: Crear Build
+        run: npm run build
+
+      - name: Commit de cambios
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git commit -m "Build de nuevas dependencias" -a
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Tags
         uses: Klemensas/action-autotag@stable
         with:
