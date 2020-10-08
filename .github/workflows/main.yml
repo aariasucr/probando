@@ -35,6 +35,7 @@ jobs:
 
       - name: Commit de cambios
         if: github.ref == 'refs/heads/master'
+        continue-on-error: true
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
@@ -42,6 +43,7 @@ jobs:
 
       - name: Push de cambios a master
         if: github.ref == 'refs/heads/master'
+        continue-on-error: true
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
