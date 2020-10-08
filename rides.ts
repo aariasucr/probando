@@ -7,6 +7,7 @@ export enum RideStatus {
   CANCELLED_BY_CLIENT = "Cancelled by client",
   CANCELLED_BY_DRIVER = "Cancelled by driver",
   COMPLETED = "Completed",
+  TIMEOUT = "Timeout",
 }
 
 /**
